@@ -56,6 +56,7 @@ router.get("/make/:make", (req, res) => {
 
 //update owner info
 router.put("/update/owner", async (req, res) => {
+    console.log(req.body)
     req.body.update.forEach(data => {
         const sql = `UPDATE cars
                  SET owner = '${data.name}'
@@ -74,9 +75,10 @@ router.put("/update/owner", async (req, res) => {
 
 //update email info
 router.put("/update/email", async (req, res) => {
+    console.log(req.body)
     req.body.update.forEach(data => {
         const sql = `UPDATE cars
-                 SET owner = '${data.email}'
+                 SET email = '${data.email}'
                  WHERE car_id = '${data.id}'`
         db.run(sql, (err) => {
             if (err) {
@@ -92,7 +94,7 @@ router.put("/update/email", async (req, res) => {
 
 //create new car
 router.post("/new", async (req, res) => {
-
+    console.log(req.body)
     req.body.add.forEach(data => {
         const sql = `INSERT INTO cars (car_ID, owner, email, make, model, year, score) VALUES (${data.id},'${data.name}','${data.email}','${data.make}','${data.model}','${data.year}',${data.score});`
         db.run(sql, (err) => {

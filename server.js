@@ -3,8 +3,9 @@ const app = express()
 const PORT = 8080
 const bodyParser = require("body-parser");
 const carRoutes = require('./routes/CarRoutes')
+const cors = require('cors')
 
-
+app.use(cors())
 app.use(bodyParser.json())
 app.set('json spaces', 3)
 app.get("/", (req, res, next) => {
